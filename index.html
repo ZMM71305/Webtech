@@ -3,18 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel Feedback</title>
+    <title>Hotel Feedback System</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Scan to Leave Feedback</h1>
-        <div class="qr-code">
-            <a href="feedback.html">
-                <img src="qr_code.png" alt="QR Code to Feedback Form">
-            </a>
+
+    <!-- QR Code View -->
+    <div id="qr-view" class="view">
+        <div class="container">
+            <h1>Scan to Leave Feedback</h1>
+            <div class="qr-code">
+                <!-- The image is a button to navigate to the feedback form -->
+                <img src="qr_code.png" alt="QR Code to Feedback Form" class="nav-to-feedback">
+            </div>
+            <p>Scan the QR code or click it to open the feedback form.</p>
+            <a href="#" class="nav-link nav-to-view-feedback">View All Feedback</a>
         </div>
-        <p>Scan the QR code with your phone to open the feedback form.</p>
     </div>
+
+    <!-- Feedback Form View -->
+    <div id="feedback-view" class="view">
+        <div class="container">
+            <h1>Leave Your Feedback</h1>
+            <form id="feedback-form">
+                <div class="form-group">
+                    <label>Rating</label>
+                    <div class="rating">
+                        <input type="radio" name="rating" id="star5" value="5" required><label for="star5">★</label>
+                        <input type="radio" name="rating" id="star4" value="4"><label for="star4">★</label>
+                        <input type="radio" name="rating" id="star3" value="3"><label for="star3">★</label>
+                        <input type="radio" name="rating" id="star2" value="2"><label for="star2">★</label>
+                        <input type="radio" name="rating" id="star1" value="1"><label for="star1">★</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="comments">Comments</label>
+                    <textarea id="comments" name="comments" rows="4" placeholder="Tell us about your experience..." required></textarea>
+                </div>
+                <button type="submit">Submit Feedback</button>
+            </form>
+            <p class="success-message" id="success-message">Thank you for your feedback!</p>
+            <a href="#" class="nav-link nav-to-view-feedback">View All Feedback</a>
+        </div>
+    </div>
+
+    <!-- View Feedback View -->
+    <div id="view-feedback" class="view">
+        <div class="container">
+            <h1>Submitted Feedback</h1>
+            <div id="feedback-list">
+                <!-- Feedback entries will be dynamically inserted here -->
+            </div>
+            <a href="#" class="nav-link nav-to-feedback">Leave More Feedback</a>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
 </body>
 </html>

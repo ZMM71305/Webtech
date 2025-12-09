@@ -1,25 +1,50 @@
+/* General Body Styles */
 body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+/* Base Container for all views */
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    max-width: 800px; /* Default max-width for view feedback */
+}
+
+/* View-specific container adjustments */
+#qr-view .container,
+#feedback-view .container {
+    max-width: 500px; /* Max-width for form and QR page */
+    text-align: center;
+}
+
+/* Centering for QR and Feedback views - applied to the view wrapper */
+#qr-view,
+#feedback-view {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f4f4f4;
+    min-height: 100vh;
+    padding: 0; /* Override body padding */
 }
 
-.container {
-    text-align: center;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
 
+/* General Typography */
 h1 {
+    text-align: center;
     margin-bottom: 20px;
 }
 
+p {
+    color: #666;
+}
+
+/* --- QR Code View Specific Styles --- */
 .qr-code {
     margin: 20px 0;
 }
@@ -30,8 +55,135 @@ h1 {
     border: 1px solid #ddd;
     padding: 10px;
     border-radius: 8px;
+    cursor: pointer;
 }
 
-p {
+/* --- Feedback Form Specific Styles --- */
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.rating input[type="radio"] {
+    display: none;
+}
+
+.rating label {
+    font-size: 2.5rem;
+    color: #ddd;
+    cursor: pointer;
+    transition: color 0.2s;
+    margin: 0;
+    text-align: center;
+}
+
+.rating input[type="radio"]:checked ~ label,
+.rating label:hover,
+.rating label:hover ~ label {
+    color: #f5b301;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.success-message {
+    text-align: center;
+    color: #28a745;
+    margin-top: 15px;
+    display: none; /* Hidden by default */
+}
+
+
+/* --- View Feedback Page Specific Styles --- */
+#feedback-list {
+    margin-top: 20px;
+}
+
+.feedback-entry {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.feedback-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.feedback-entry .rating {
+    font-size: 1.5rem;
+    color: #f5b301;
+    border: none;
+    padding: 0;
+}
+
+.timestamp {
+    font-size: 0.9rem;
     color: #666;
+}
+
+.comments {
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+
+/* --- Navigation Links --- */
+.nav-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #007bff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+/* Hide all views by default */
+.view {
+    display: none;
 }
