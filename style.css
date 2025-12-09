@@ -44,6 +44,12 @@ p {
     color: #666;
 }
 
+/* --- Logo Styles --- */
+.logo {
+    max-width: 150px;
+    margin-bottom: 20px;
+}
+
 /* --- QR Code View Specific Styles --- */
 .qr-code {
     margin: 20px 0;
