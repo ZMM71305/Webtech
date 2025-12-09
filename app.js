@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const rating = feedbackForm.querySelector('input[name="rating"]:checked');
         const comments = feedbackForm.querySelector('#comments');
+        const email = feedbackForm.querySelector('#email').value.trim();
 
         if (!rating) {
             alert('Please select a rating.');
@@ -61,13 +62,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const feedback = {
             rating: rating.value,
             comments: comments.value,
-            timestamp: new Date().toISOString()
+            timestamp: new Date().toISOString(),
+            email: email
         };
 
         // Save to localStorage
         let feedbacks = JSON.parse(localStorage.getItem('feedbacks')) || [];
         feedbacks.push(feedback);
         localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
+
+        // If an email is provided, open the email client to send a copy to the user
+        if (email) {
+            const subject = 'Your Feedback to Hotel Cuna';
+            const body = `Thank you for your feedback!\n\nHere is a copy of your submission:\n\nRating: ${feedback.rating} stars\nComments: ${feedback.comments}\n`;
+            window.open(`mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+        }
 
         // Show success message and reset form
         successMessage.style.display = 'block';
