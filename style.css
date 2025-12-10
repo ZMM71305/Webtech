@@ -1,77 +1,78 @@
-/* General Body Styles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background-color: #f4f4f4;
-    padding: 20px;
-}
-
-/* Base Container for all views */
-.container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 0 auto;
-    max-width: 800px; /* Default max-width for view feedback */
-}
-
-/* View-specific container adjustments */
-#qr-view .container,
-#feedback-view .container {
-    max-width: 500px; /* Max-width for form and QR page */
-    text-align: center;
-}
-
-/* Centering for QR and Feedback views - applied to the view wrapper */
-#qr-view,
-#feedback-view {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 0; /* Override body padding */
+    margin: 0;
 }
 
+.container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
 
-/* General Typography */
-h1 {
+.card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 40px;
     text-align: center;
-    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.view {
+    display: none; /* Hidden by default */
+}
+
+.logo {
+    max-height: 50px;
+    margin-bottom: 24px;
+}
+
+h1 {
+    font-weight: 600;
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 8px;
 }
 
 p {
     color: #666;
+    margin-top: 0;
+    margin-bottom: 24px;
+    font-size: 14px;
 }
 
-/* --- Logo Styles --- */
-.logo {
-    max-width: 150px;
-    margin-bottom: 20px;
-}
-
-/* --- QR Code View Specific Styles --- */
 .qr-code {
-    margin: 20px 0;
+    margin: 24px 0;
 }
 
 .qr-code img {
-    width: 200px;
-    height: 200px;
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 8px;
     cursor: pointer;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 10px;
 }
 
-/* --- Feedback Form Specific Styles --- */
+.small-text {
+    font-size: 12px;
+    color: #999;
+}
+
+/* Feedback Form Styles */
+#feedback-form {
+    width: 100%;
+}
+
 .form-group {
-    margin-bottom: 15px;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
+    margin-bottom: 16px;
     text-align: left;
 }
 
@@ -79,117 +80,109 @@ label {
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 5px;
+    margin-bottom: 20px;
 }
 
-.rating input[type="radio"] {
+.rating input {
     display: none;
 }
 
 .rating label {
-    font-size: 2.5rem;
-    color: #ddd;
+    font-size: 40px;
+    color: #e0e0e0;
     cursor: pointer;
     transition: color 0.2s;
-    margin: 0;
-    text-align: center;
 }
 
-.rating input[type="radio"]:checked ~ label,
+.rating input:checked ~ label,
 .rating label:hover,
 .rating label:hover ~ label {
-    color: #f5b301;
+    color: #ffc107;
 }
 
-textarea {
+textarea,
+input[type="email"] {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
     box-sizing: border-box;
-    resize: vertical;
+    transition: border-color 0.2s;
 }
 
-button {
+textarea:focus,
+input[type="email"]:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+button[type="submit"] {
     width: 100%;
-    padding: 10px;
-    background-color: #28a745;
-    color: #fff;
+    padding: 14px;
+    background-color: #007bff;
+    color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
-    font-size: 1rem;
+    transition: background-color 0.2s;
     margin-top: 10px;
 }
 
-button:hover {
-    background-color: #218838;
+button[type="submit"]:hover {
+    background-color: #0056b3;
 }
 
-.success-message {
-    text-align: center;
-    color: #28a745;
-    margin-top: 15px;
-    display: none; /* Hidden by default */
-}
-
-
-/* --- View Feedback Page Specific Styles --- */
-#feedback-list {
-    margin-top: 20px;
-}
-
-.feedback-entry {
-    border: 1px solid #ddd;
-    padding: 15px;
-    border-radius: 4px;
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-.feedback-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.feedback-entry .rating {
-    font-size: 1.5rem;
-    color: #f5b301;
-    border: none;
-    padding: 0;
-}
-
-.timestamp {
-    font-size: 0.9rem;
-    color: #666;
-}
-
-.comments {
-    margin: 0;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-}
-
-
-/* --- Navigation Links --- */
 .nav-link {
-    display: block;
-    text-align: center;
+    display: inline-block;
     margin-top: 20px;
     color: #007bff;
     text-decoration: none;
-    cursor: pointer;
+    font-size: 14px;
 }
 
 .nav-link:hover {
     text-decoration: underline;
 }
 
-/* Hide all views by default */
-.view {
-    display: none;
+/* Feedback List Styles */
+#feedback-list {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.feedback-entry {
+    border-bottom: 1px solid #eee;
+    padding: 16px 0;
+}
+
+.feedback-entry:last-child {
+    border-bottom: none;
+}
+
+.feedback-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.feedback-header .rating {
+    font-size: 18px;
+    color: #ffc107;
+}
+
+.feedback-header .timestamp {
+    font-size: 12px;
+    color: #999;
+}
+
+.feedback-entry .comments {
+    font-size: 14px;
+    color: #333;
+    margin: 0;
 }
