@@ -27,9 +27,6 @@ body {
     box-sizing: border-box;
 }
 
-.view {
-    display: none; /* Hidden by default */
-}
 
 .logo {
     max-height: 50px;
