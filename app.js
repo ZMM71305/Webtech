@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const views = {
         qr: document.getElementById('qr-view'),
         feedback: document.getElementById('feedback-view'),
+        thankYou: document.getElementById('thank-you-view'),
         viewFeedback: document.getElementById('view-feedback'),
     };
 
@@ -11,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const feedbackForm = document.getElementById('feedback-form');
-    const successMessage = document.getElementById('success-message');
 
     // --- Navigation ---
     function showView(viewId) {
@@ -23,10 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         // Show the requested view
         if (views[viewId]) {
-            views[viewId].style.display = 'block'; // or 'flex' if needed for centering
-            if(viewId === 'qr' || viewId === 'feedback') {
-                 views[viewId].style.display = 'flex';
-            }
+            views[viewId].style.display = 'block';
         }
     }
 
@@ -52,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const rating = feedbackForm.querySelector('input[name="rating"]:checked');
         const comments = feedbackForm.querySelector('#comments');
+        const email = feedbackForm.querySelector('#email').value.trim();
 
         if (!rating) {
             alert('Please select a rating.');
@@ -61,7 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const feedback = {
             rating: rating.value,
             comments: comments.value,
-            timestamp: new Date().toISOString()
+            timestamp: new Date().toISOString(),
+            email: email
         };
 
         // Save to localStorage
@@ -69,16 +68,16 @@ document.addEventListener('DOMContentLoaded', () => {
         feedbacks.push(feedback);
         localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
 
-        // Show success message and reset form
-        successMessage.style.display = 'block';
-        feedbackForm.reset();
+        // If an email is provided, open the email client to send a copy
+        if (email) {
+            const subject = 'Your Feedback to Hotel Cuna';
+            const body = `Thank you for your feedback!\n\nHere is a copy of your submission:\n\nRating: ${feedback.rating} stars\nComments: ${feedback.comments}\n`;
+            window.open(`mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+        }
 
-        // Hide success message after 3 seconds, then show feedback list
-        setTimeout(() => {
-            successMessage.style.display = 'none';
-            renderFeedbackList();
-            showView('viewFeedback');
-        }, 2000);
+        // Reset form and show thank you view
+        feedbackForm.reset();
+        showView('thankYou');
     });
 
     // --- Feedback Rendering ---
